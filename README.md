@@ -52,6 +52,7 @@ Import from GitHub:
 git clone https://github.com/Seraphaious/SMS-AI.git
 cd SMS-AI
 pip install -r requirements.txt
+python main.py
 ```
 
 

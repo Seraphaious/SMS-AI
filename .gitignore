@@ -1,0 +1,28 @@
+# .gitignore
+
+# Ignore .env file
+.env
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+*.venv
+env/
+.venv/
+
+# Jupyter Notebook files
+.ipynb_checkpoints
+
+node_modules/
+**/__pycache__/
+
+# Ignore dev folder
+dev/

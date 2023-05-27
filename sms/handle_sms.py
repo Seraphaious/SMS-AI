@@ -101,7 +101,8 @@ def handle_sms(sms, modem):
 
     if usrMessage.lower() == 'my creation was a mistake':
         redis_client.delete(usrNumber)
-        index.delete_all(namespace=usrNumber)
+        index.delete(deleteAll='true', namespace=usrNumber)
+        #index.delete_all(namespace=usrNumber)
         modem.sendSms(usrNumber, "Session reset, all variables reset and history deleted")
         set_user_data(usrNumber, 'mode', 'conversational_agent')
         return

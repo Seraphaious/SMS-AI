@@ -42,7 +42,11 @@ if INITIALIZE_MODELS:
 
 
 embeddings = OpenAIEmbeddings()
+memory_llm = ChatOpenAI(temperature=0.1, model_name="gpt-3.5-turbo")
 turbo_llm = ChatOpenAI(temperature=1, model_name="gpt-3.5-turbo")
+detail_llm = ChatOpenAI(temperature=1, model_name="gpt-4")
+
+
 wizard_7b = initializer.get_model('wizard_7b')
 manticore_13b = initializer.get_model('manticore_13b')
 

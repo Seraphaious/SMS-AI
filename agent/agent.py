@@ -7,7 +7,7 @@ from langchain import LLMChain
 
 from agent.tools import tools
 from agent import prompt
-from initialization import turbo_llm
+from initialization import turbo_llm, memory_llm, detail_llm
 
 
 agents = {}
@@ -22,13 +22,13 @@ def create_conversational_agent(user_name, user_obj, bot_personality, bot_name, 
     
 
     memory = ConversationEntityCache(
-        usrNumber=usrNumber, memory_key="chat_history", llm=turbo_llm, 
+        usrNumber=usrNumber, memory_key="chat_history", llm=memory_llm, 
         input_key="input", human_name=user_name, bot_name=bot_name, return_messages=True,
     )
 
     tool_names = [tool.name for tool in tools]
     llm_chain = LLMChain(llm=turbo_llm, prompt=prompt.prompt)
-    agent = StructuredChatAgent(llm_chain=llm_chain, allowed_tools=tool_names)
+    agent = StructuredChatAgent(llm_chain=detail_llm, allowed_tools=tool_names)
 
 
     agent = AgentExecutor.from_agent_and_tools(

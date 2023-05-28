@@ -5,7 +5,7 @@ from langchain.agents import AgentExecutor
 from langchain.agents.structured_chat.base import StructuredChatAgent
 
 from memory.entity_cache import ConversationEntityCache
-from initialization import wizard_7b, manticore_13b, turbo_llm
+from initialization import wizard_7b, manticore_13b, turbo_llm, memory_llm, detail_llm
 from agent.tools import tools
 from langchain import LLMChain
 
@@ -28,12 +28,12 @@ while True:
         from agent import prompt
 
         memory = ConversationEntityCache(
-            usrNumber=usrNumber, memory_key="chat_history", llm=turbo_llm, 
+            usrNumber=usrNumber, memory_key="chat_history", llm=memory_llm, 
             input_key="input", human_name=user_name, bot_name=bot_name, return_messages=True,
         )
 
         tool_names = [tool.name for tool in tools]
-        llm_chain = LLMChain(llm=turbo_llm, prompt=prompt.prompt)
+        llm_chain = LLMChain(llm=detail_llm, prompt=prompt.prompt)
         agent = StructuredChatAgent(llm_chain=llm_chain, allowed_tools=tool_names)
 
         agent = AgentExecutor.from_agent_and_tools(

@@ -27,8 +27,8 @@ def create_conversational_agent(user_name, user_obj, bot_personality, bot_name, 
     )
 
     tool_names = [tool.name for tool in tools]
-    llm_chain = LLMChain(llm=turbo_llm, prompt=prompt.prompt)
-    agent = StructuredChatAgent(llm_chain=detail_llm, allowed_tools=tool_names)
+    llm_chain = LLMChain(llm=detail_llm, prompt=prompt.prompt)
+    agent = StructuredChatAgent(llm_chain=llm_chain, allowed_tools=tool_names)
 
 
     agent = AgentExecutor.from_agent_and_tools(

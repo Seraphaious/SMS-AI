@@ -99,13 +99,18 @@ def handle_sms(sms, modem):
     index = pinecone.Index(INDEX)
 
 
-    if usrMessage.lower() == 'my creation was a mistake':
+    if usrMessage.lower() == 'reset personality':
         redis_client.delete(usrNumber)
-        index.delete(deleteAll='true', namespace=usrNumber)
-        #index.delete_all(namespace=usrNumber)
-        modem.sendSms(usrNumber, "Session reset, all variables reset and history deleted")
+        modem.sendSms(usrNumber, "Personality reset, all variables removed")
         set_user_data(usrNumber, 'mode', 'conversational_agent')
         return
+
+    elif usrMessage.lower() == 'reset memory':
+        index.delete(deleteAll='true', namespace=usrNumber)
+        modem.sendSms(usrNumber, "Memory reset, history deleted")
+        #index.delete_all(namespace=usrNumber)
+        return
+    
 
 
     if is_new_user or int(user_data.get('setup_step', '0')) < 5:  # Update this line

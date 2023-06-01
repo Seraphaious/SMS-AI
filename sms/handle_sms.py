@@ -116,7 +116,7 @@ def handle_sms(sms, modem):
     if is_new_user or int(user_data.get('setup_step', '0')) < 5:  # Update this line
         if int(user_data.get('setup_step', '0')) == 0:  # Update this line
             modem.sendSms(sms.number, "Welcome, Setup will begin shortly, your will be asked questions, the answers you give will largely determine your new companions behavior")
-            modem.sendSms(sms.number, "If you change your mind later, you can type 'My creation was a mistake' and your session data will be deleted.")
+            modem.sendSms(sms.number, "If you change your mind later, you can type 'Reset Personality' and 'Reset Memory' and the respective data will be deleted.")
             time.sleep(2)
             modem.sendSms(sms.number, "Answering with only one or two words, please provide your name.")
             set_user_data(usrNumber, 'setup_step', '1')

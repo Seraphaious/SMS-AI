@@ -262,7 +262,7 @@ class ConversationEntityCache(BaseChatMemory):
 
 
     memory_key: str = "history"  #: :meta private:
-    k: int = 1
+    k: int = 3
 
     def __init__(
         self,
